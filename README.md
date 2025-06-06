@@ -6,9 +6,9 @@
 
 #### Project Overview
 
-## This project highlights the use of advanced SQL querying techniques on a large-scale Apple retail sales dataset consisting of more than 1 million records. The dataset provides comprehensive details on products, store locations, sales transactions, and warranty claims from Apple outlets across the globe.
+# This project highlights the use of advanced SQL querying techniques on a large-scale Apple retail sales dataset consisting of more than 1 million records. The dataset provides comprehensive details on products, store locations, sales transactions, and warranty claims from Apple outlets across the globe.
 
-## Through solving a variety of questions—ranging from basic to advanced—this project demonstrates the ability to write powerful SQL queries that uncover meaningful business insights from complex datasets.
+# Through solving a variety of questions—ranging from basic to advanced—this project demonstrates the ability to write powerful SQL queries that uncover meaningful business insights from complex datasets.
 
 
 
