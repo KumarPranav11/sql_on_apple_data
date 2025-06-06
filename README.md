@@ -1,14 +1,14 @@
 
-##### Data Analysis of Apple Sales Using SQL
+#### Data Analysis of Apple Sales Using SQL
 
 ![image1111](https://github.com/user-attachments/assets/9c29037b-eb41-4882-8d04-3d10200f4e90)
 
 
-#### Project Overview
+## Project Overview
 
-# This project highlights the use of advanced SQL querying techniques on a large-scale Apple retail sales dataset consisting of more than 1 million records. The dataset provides comprehensive details on products, store locations, sales transactions, and warranty claims from Apple outlets across the globe.
+This project highlights the use of advanced SQL querying techniques on a large-scale Apple retail sales dataset consisting of more than 1 million records. The dataset provides comprehensive details on products, store locations, sales transactions, and warranty claims from Apple outlets across the globe.
 
-# Through solving a variety of questions—ranging from basic to advanced—this project demonstrates the ability to write powerful SQL queries that uncover meaningful business insights from complex datasets.
+Through solving a variety of questions—ranging from basic to advanced—this project demonstrates the ability to write powerful SQL queries that uncover meaningful business insights from complex datasets.
 
 
 
@@ -16,31 +16,31 @@
 
 The project uses five main tables:
 
-1. **stores**: Contains information about Apple retail stores.
+ **stores**: 
    - `store_id`: Unique identifier for each store.
    - `store_name`: Name of the store.
    - `city`: City where the store is located.
    - `country`: Country of the store.
 
-2. **category**: Holds product category information.
+ **category**: 
    - `category_id`: Unique identifier for each product category.
    - `category_name`: Name of the category.
 
-3. **products**: Details about Apple products.
+ **products**: 
    - `product_id`: Unique identifier for each product.
    - `product_name`: Name of the product.
    - `category_id`: References the category table.
    - `launch_date`: Date when the product was launched.
    - `price`: Price of the product.
 
-4. **sales**: Stores sales transactions.
+ **sales**: 
    - `sale_id`: Unique identifier for each sale.
    - `sale_date`: Date of the sale.
    - `store_id`: References the store table.
    - `product_id`: References the product table.
    - `quantity`: Number of units sold.
 
-5. **warranty**: Contains information about warranty claims.
+ **warranty**:
    - `claim_id`: Unique identifier for each warranty claim.
    - `claim_date`: Date the claim was made.
    - `sale_id`: References the sales table.
@@ -58,7 +58,7 @@ This project primarily focuses on developing and showcasing the following SQL sk
 - **Real-World Problem Solving**: Answering business-related questions that reflect real-world scenarios faced by data analysts.
 
 
-## Dataset
+## Dataset Overview
 
 - **Size**: 1 million+ rows of sales data.
 - **Period Covered**: The data spans multiple years, allowing for long-term trend analysis.
