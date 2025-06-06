@@ -1,5 +1,5 @@
 
-###Data Analysis of Apple Sales Using SQL
+### Data Analysis of Apple Sales Using SQL
 
 ![image1111](https://github.com/user-attachments/assets/9c29037b-eb41-4882-8d04-3d10200f4e90)
 
