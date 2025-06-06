@@ -162,11 +162,12 @@ FROM
 	GROUP BY 1, 2
 ) as t1
 WHERE rank = 1
+```
 
 -- Medium to Hard Questions
 -- Q.11 Identify the least selling product in each country for each year based on total units sold.
 
-
+```sql
 WITH product_rank
 AS
 (
