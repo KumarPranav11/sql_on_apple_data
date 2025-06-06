@@ -61,14 +61,16 @@ ORDER BY 3 DESC
 
 -- Q.3 Identify how many sales occurred in December 2023.
 
-
+```sql
 SELECT 
 	COUNT(sale_id) as total_sale 
 FROM sales
 WHERE TO_CHAR(sale_date, 'MM-YYYY') = '12-2023'
+```
 
 -- Q.4 Determine how many stores have never had a warranty claim filed.
 
+```sql
 SELECT COUNT(*) FROM stores
 WHERE store_id NOT IN (
 						SELECT 
@@ -77,12 +79,12 @@ WHERE store_id NOT IN (
 						RIGHT JOIN warranty as w
 						ON s.sale_id = w.sale_id
 						);
+```
 
 -- Q.5 Calculate the percentage of warranty claims marked as "Warranty Void".
 no claim that as wv/total claim * 100
 
-
-
+```sql
 SELECT 
 	ROUND
 		(COUNT(claim_id)/
@@ -91,9 +93,11 @@ SELECT
 	2)as warranty_void_percentage
 FROM warranty
 WHERE repair_status = 'Warranty Void'
+```
 
 -- Q.6 Identify which store had the highest total units sold in the last year.
 
+```sql
 SELECT 
 	s.store_id,
 	st.store_name,
@@ -105,16 +109,20 @@ WHERE sale_date >= (CURRENT_DATE - INTERVAL '1 year')
 GROUP BY 1, 2
 ORDER BY 3 DESC
 LIMIT 1
+```
 
 -- Q.7 Count the number of unique products sold in the last year.
 
+```sql
 SELECT 
 	COUNT(DISTINCT product_id)
 FROM sales
 WHERE sale_date >= (CURRENT_DATE - INTERVAL '1 year')
+```
 
 -- Q.8 Find the average price of products in each category.
 
+```sql
 SELECT 
 	p.category_id,
 	c.category_name,
@@ -125,20 +133,23 @@ category as c
 ON p.category_id = c.category_id
 GROUP BY 1, 2
 ORDER BY 3 DESC
+```
 
 -- Q.9 How many warranty claims were filed in 2020?
 
+```sql
 SELECT 
 	COUNT(*) as warranty_claim
 FROM warranty
 WHERE EXTRACT(YEAR FROM claim_date) = 2020
+```
 
 -- Q.10 For each store, identify the best-selling day based on highest quantity sold.
 
 -- store_id, day_name, sum(qty)
 --  window dense rank 
 
-
+```sql
 SELECT  * 
 FROM
 (
@@ -177,9 +188,11 @@ SELECT
 * 
 FROM product_rank
 WHERE rank = 1
+```
 
 -- Q.12 Calculate how many warranty claims were filed within 180 days of a product sale.
 
+```sql
 SELECT 
 	COUNT(*)
 FROM warranty as w
@@ -188,6 +201,7 @@ sales as s
 ON s.sale_id = w.sale_id
 WHERE 
 	w.claim_date - sale_date <= 180
+```
 
 --Q.13  Determine how many warranty claims were filed for products launched in the last two years.
 -- each prod 
@@ -195,6 +209,7 @@ WHERE
 --  no sale
 -- each must be launcnhed in last 2 year
 
+```sql
 SELECT 
 	p.product_name,
 	COUNT(w.claim_id) as no_claim,
@@ -208,9 +223,11 @@ ON p.product_id = s.product_id
 WHERE p.launch_date >= CURRENT_DATE - INTERVAL '2 years'
 GROUP BY 1
 HAVING COUNT(w.claim_id) > 0
+```
 
 -- Q.14 List the months in the last three years where sales exceeded 5,000 units in the USA.
 
+```sql
 SELECT 
 	TO_CHAR(sale_date, 'MM-YYYY') as month,
 	SUM(s.quantity) as total_unit_sold
@@ -224,10 +241,11 @@ WHERE
 	s.sale_date >= CURRENT_DATE - INTERVAL '3 year'
 GROUP BY 1
 HAVING SUM(s.quantity) > 5000
-
+```
 
 -- Q.15 Identify the product category with the most warranty claims filed in the last two years.
 
+```sql
 SELECT 
 	c.category_name,
 	COUNT(w.claim_id) as total_claims
@@ -243,11 +261,11 @@ ON c.category_id = p.category_id
 WHERE 
 	w.claim_date >= CURRENT_DATE - INTERVAL '2 year'
 GROUP BY 1
+```
 
-
--- Complex Problems
 -- Q.16 Determine the percentage chance of receiving warranty claims after each purchase for each country!
 
+```sql
 SELECT 
 	country,
 	total_unit_sold,
@@ -267,10 +285,13 @@ warranty as w
 ON w.sale_id = s.sale_id
 GROUP BY 1) t1
 ORDER BY 4 DESC
+```
 
 -- Q.17 Analyze the year-by-year growth ratio for each store.
 
 -- each store and their yearly sale 
+
+```sql
 WITH yearly_sales
 AS
 (
@@ -313,10 +334,12 @@ WHERE
 	last_year_sale IS NOT NULL
 	AND 
 	YEAR <> EXTRACT(YEAR FROM CURRENT_DATE)
+```
 
 -- Q.18 Calculate the correlation between product price and warranty claims for 
 -- products sold in the last five years, segmented by price range.
 
+```sql
 SELECT 
 	
 	CASE
@@ -334,11 +357,11 @@ products as p
 ON p.product_id = s.product_id
 WHERE claim_date >= CURRENT_DATE - INTERVAL '5 year'
 GROUP BY 1
-
+```
 
 -- Q.19 Identify the store with the highest percentage of "Paid Repaired" claims relative to total claims filed
 
-
+```sql
 WITH paid_repair
 AS
 (SELECT 
@@ -375,11 +398,12 @@ total_repaired tr
 ON pr.store_id = tr.store_id
 JOIN stores as st
 ON tr.store_id = st.store_id
-
+```
 
 -- Q.20 Write a query to calculate the monthly running total of sales for each store
 -- over the past four years and compare trends during this period.
 
+```sql
 WITH monthly_sales
 AS
 (SELECT 
@@ -401,7 +425,7 @@ SELECT
 	total_revenue,
 	SUM(total_revenue) OVER(PARTITION BY store_id ORDER BY year, month) as running_total
 FROM monthly_sales
-
+```
 
 
 
